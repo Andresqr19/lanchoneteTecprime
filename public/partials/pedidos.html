@@ -1,0 +1,30 @@
+<div class="jumbotron">
+    <h1 class="text-center">Pedido</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">
+	{{mensagem}}
+</p>
+
+<div class="row">
+    <div class="panel panel-default col-md-6" ng-repeat="pedido in pedidos">
+        <div class="panel-heading row">
+            <h3 class="panel-title text-center">{{pedido.nome}}</h3>
+        </div>
+        <div class="panel-body">
+            <div><label>Descrição: </label> {{pedido.descricao || 'Sem descrição'}}</div>
+            <div><label>Preço: </label> {{ formatNumber(pedido.preco)}}</div>
+            <div><label>Total: </label> {{ formatNumber(pedido.subTotal)}}</div>
+            
+            <img class="img-responsive center-block" src="{{pedido.url}}" 
+                alt="{{foto.titulo}}">
+        </div><!-- fim panel-body -->
+        <a ng-click="retirar(pedido)" class="btn btn-primary">-</a> 
+        <span>{{ (pedido.quantidade)}}</span>
+        <a ng-click="acrecentar(pedido)" class="btn btn-primary">+</a>
+        <a ng-click="remover(pedido.id)" class="btn btn-danger">Remover</a>
+    </div>
+</div>
+<div><label>Valor Total do Pedido: </label> {{ formatNumber(totalPedido())}}</div>
+<a ng-click="voltar()" class="btn btn-primary">Voltar</a> 
+<a ng-click="finalizarPedido()" class="btn btn-primary">Finalizar Pedido</a> 
